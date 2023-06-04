@@ -1,0 +1,50 @@
+class MenuMashine:
+    quizQuantity = 0   # количество раундов
+
+    def __init__(self):
+        self.qm = None
+        self.go = None
+        pass
+
+    # это универсальный метод для получения целочисленных значений.
+    # Конечно, её можно было бы упростить(усложнить), но она и так
+    # достаточно наворочена ==============================================
+    def __get__(self, **arg):
+
+        # так разбирается словарь, который содержит кортеж пар ключ:значение
+        # for key_arg, value_arg in arg.items():
+        #     print(f'>>>{key_arg}, {value_arg}<<<')
+        # но здесь проще.
+        # В **arg ОДНА пара ключ:значение. Она так и читается
+
+        [retItems] = arg.items()   # список [ключ, значение],
+        #print(f'... {retItems[0]} ...') # из которого можно выбрать КЛЮЧ
+        #print(f'... {retItems[1]} ...') # или ЗНАЧЕНИЕ
+
+        # retItems[0] - кодирует, что получить
+        # retItems[1] - кодирует, что при этом говорить
+
+        if retItems[0] == 'int':
+            while True:
+                var = input(retItems[1])
+
+                if var.isdigit() and int(var) > 0:
+                    var = int(var)
+                    return var
+
+        elif retItems[0] == 'go':
+            while True:
+                var = input(retItems[1])
+
+                if var == 'yes' or var == 'no':
+                    return var
+
+    # метод получает с помощью __get__
+    # значения для атрибутов (целочисленные и строковые),
+    # представленных словарями с различными ключами и значениями,
+    # которые передаются в __get__ в качестве аргументов
+    def get(self, name):
+        if name == 'qm':
+            self.qm = self.__get__(int=f'give value of quizQuantity: ')
+        elif name == 'go':
+            self.go = self.__get__(go=f'do you continue the game? (yes/no): ')
