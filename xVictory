@@ -1,0 +1,132 @@
+# пакет victoryPack модуль xVictory
+
+def sayHello_0(hKey):
+    print(f'this is sayHello_0 {hKey}')
+
+class BornExpertInitor:
+
+    Persons = [[], [], []]
+    QuizNum = 0
+    resOfQuizRound = [False] # * 10
+    PersonsMonitor = []
+    keysDays = []
+    Days = {}
+    keysMonths = []
+    Months = {}
+
+    @staticmethod
+    def setResOfQuizRound(nQuiz):
+        BornExpertInitor.resOfQuizRound = [False] * nQuiz
+
+
+    @staticmethod
+    def InitListOfPersonsDepo():
+        i = 0
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Stalin')
+        BornExpertInitor.Persons[2].append('21.12.1879')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Marx')
+        BornExpertInitor.Persons[2].append('5.5.1818')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Engels')
+        BornExpertInitor.Persons[2].append('28.11.1820')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Mussolini')
+        BornExpertInitor.Persons[2].append('29.7.1883')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Hitler')
+        BornExpertInitor.Persons[2].append('20.4.1889')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Bizet')
+        BornExpertInitor.Persons[2].append('25.10.1838')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Zedong')
+        BornExpertInitor.Persons[2].append('26.12.1893')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Castro')
+        BornExpertInitor.Persons[2].append('13.8.1926')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Gaddafi')
+        BornExpertInitor.Persons[2].append('7.6.1942')
+
+        i += 1
+        BornExpertInitor.Persons[0].append(i)
+        BornExpertInitor.Persons[1].append('Mandela')
+        BornExpertInitor.Persons[2].append('18.7.1918')
+
+
+    # ===================================================================================
+    @staticmethod
+    def fullDateFormer():
+    # ===================================================================================
+        BornExpertInitor.Days = {1: 'первое', 2: 'второе', 3: 'третье', 4: 'четвёртое',
+                                5: 'пятое', 6: 'шестое', 7: 'седьмое', 8: 'восьмое',
+                                9: 'девятое', 10: 'десятое', 11: 'одиннадцатое', 12: 'двенадцатое',
+                                13: 'тринадцатое', 14: 'четырнадцатое', 15: 'пятнадцатое',
+                                16: 'шестнадцатое', 17: 'семнадцатое', 18: 'восемнадцатое',
+                                19: 'девятнадцатое', 20: 'двадцатое', 21: 'двадцать первое',
+                                22: 'двадцать второе', 23: 'двадцать третье',
+                                24: 'двадцать четвёртое', 25: 'двадцать пятое',
+                                26: 'двадцать шестое', 27: 'двадцать седьмое',
+                                28: 'двадцать восьмое', 29: 'двадцать девятое',
+                                30: 'тридцатое', 31: 'тридцать первое'}
+
+        BornExpertInitor.keysDays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+                                  16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 26, 28, 29, 30, 31]
+
+    # ===================================================================================
+        BornExpertInitor.Months = {1: 'января', 2: 'февраля', 3: 'марта', 4: 'апреля',
+                                5: 'мая', 6: 'июня', 7: 'июля', 8: 'августа',
+                                9: 'сентября', 10: 'октября', 11: 'ноября', 12: 'декабря'}
+
+        BornExpertInitor.keysMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+    # ===================================================================================
+
+    @staticmethod
+    def dayTester(bornDay):
+        if int(bornDay) not in BornExpertInitor.keysDays:
+            raise ('The day exseption')
+    # ===================================================================================
+
+    @staticmethod
+    def monthTester(bornMonth):
+        if int(bornMonth) not in BornExpertInitor.keysMonths:
+            raise ('The month exseption')
+
+    # ===================================================================================
+
+
+    @staticmethod
+    def yearTester(bornYear):
+        # date = Persons[2][pIndex]
+        # year = date[-4: : ]
+
+        if len(bornYear) != 4 or bornYear.isdigit() == False:
+            raise ('The year exseption')
+
+    # ===================================================================================
+
+    @staticmethod
+    def helloFromBornExpertInitor():
+        # ===================================================================================
+        print('===theBornExpertInitor===')
+
+    # ===================================================================================
