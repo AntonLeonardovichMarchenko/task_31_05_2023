@@ -1,0 +1,69 @@
+# имя пакета упоминается в операторах импорта
+
+#from victoryPack import xVictory
+# из пакета victoryPack импортируется модуль xVictory
+
+#from victoryPack import bornExpert
+# из пакета victoryPack импортируется модуль bornExpert
+
+from victoryPack import *
+
+# весь огород с модулем __init__ городится только для того, чтобы вместо
+# ДВУХ (как сейчас), ТРЁХ, ..., ПЯТИ (уже круче), ..., СТА (!!!)
+# операторов импорта применить ОДИН (со звёздочкой) для всех модулей
+# одного уровня из импортируемого пакета.
+
+from menuMashine import MenuMashine
+# этот импорт нужен для запуска меню машины
+# (количество раундов, продолжение/завершение игры)
+
+if __name__ == '__main__':
+    # тестовая функция модуля xVictory
+    xVictory.sayHello_0(f'\nhello from victoryPack\n')
+    # вызов victoryPack.xVictory.sayHello_0
+
+    # тестовая функция модуля bornExpert
+    bornExpert.sayHello_0(f'12345\n')
+    #bornExpert.sayHello_0('hello from victoryPack')
+    # вызов victoryPack.BornExpert.sayHello_0
+
+
+    # тестовые статические методы классов
+    # xVictory.BornExpertInitor и bornExpert.TheBornExpert
+    xVictory.BornExpertInitor.helloFromBornExpertInitor()
+    # модуль
+    #       класс
+    #                          метод
+    bornExpert.TheBornExpert.helloFromBornExpert()
+    # модуль
+    #       класс
+    #                          метод
+
+    # тестовый прогон меню машины ========================================
+    # gm = GameMaster()
+    # gm.get('qm')
+    # GameMaster.quizQuantity = gm.qm
+    # gm.get('go')
+    #
+    # print(f'GameMaster.quizQuantity: {GameMaster.quizQuantity}')
+    # print(f'gm == {gm.go}')
+    # ====================================================================
+
+    mm = MenuMashine()  # меню машина привинчена снаружи приложения.
+                        # может быть, если что, её будет проще модернизировать.
+
+    while True:
+        mm.get('qm')
+        bex = bornExpert.TheBornExpert(mm.qm)
+        del bex
+        mm.get('go')
+        if mm.go == 'no':
+            break
+
+
+
+
+
+
+
+
