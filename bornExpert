@@ -1,0 +1,165 @@
+# пакет victoryPack модуль bornExpert
+
+# Tests_2022.test_23_03_2023 - Это исходный модуль
+
+import random
+from random import randrange
+
+from menuMashine import MenuMashine
+
+# все статические методы и атрибуты (переменные) перемещены в модуль
+# victoryPack.xVictory, где специально для них объявлен класс BornExpertInitor
+from victoryPack.xVictory import BornExpertInitor as be
+
+def sayHello_0(hKey):
+    print(f'this is sayHello_0 {hKey}')
+
+class TheBornExpert:
+
+
+
+    @staticmethod
+    def helloFromBornExpert():
+        # ===================================================================================
+        print('===theBornExpert===')
+
+    # @staticmethod
+    # def DateTimeTest(quizNum):
+    #
+    #    while True:
+    #         TheBornExpert(quizNum)
+    #         TheBornExpert.gm.get('go')
+    #         theResult = TheBornExpert.gm.go
+    #         if theResult == 'no':
+    #              break
+
+
+
+    # ===================================================================================
+
+    def __init__(self, quizNum):
+
+
+        print(f'quizNum ===={quizNum}====')
+
+        be.QuizNum = quizNum
+        be.setResOfQuizRound(quizNum)
+
+        self.Persons = [[], [], []]
+        # ===================================================================================
+        if len(be.Persons[0]) == 0:
+            be.InitListOfPersonsDepo()
+            be.fullDateFormer()
+        # ===================================================================================
+        self.Persons[1].clear()
+        for i in range(0,quizNum):
+            persIndex = randrange(0, len(be.Persons[0]))
+            self.Persons[0].append(i)
+            self.Persons[1].append(be.Persons[1][persIndex])
+            self.Persons[2].append(be.Persons[2][persIndex])
+
+        for i in range(be.QuizNum):
+            be.resOfQuizRound[i] = False
+        else:
+            self.quiz()
+
+    # ===================================================================================
+
+    def quiz(self):
+        # ===================================================================================
+
+        for i in range(len(self.Persons[0])):
+            print(f'{self.Persons[1][i]} ... {self.Persons[2][i]}')
+
+        be.PersonsMonitor = []
+        # ===================================================================================
+
+        nTrue = 0
+        print(f'+------------------------------------------+')
+        for i in range(be.QuizNum):
+            # значение TheBornExpert.QuizNum берётся из GameMaster
+            # и здесь i это номер игры
+            persIndex = randrange(0, len(self.Persons[0]))
+            # случайный персонаж из списка. persIndex - это его индекс
+            print(f'{i}:{self.Persons[1][persIndex]}')
+            be.PersonsMonitor.append(persIndex)
+            # сама игра. Точка входа и подсчёт успешных результатов ===========
+            if self.bornTester(persIndex, i) == True:
+                nTrue += 1
+            # =================================================================
+
+        # отыграли TheBornExpert.QuizNum игр с результатом nTrue ========================
+
+        # вывод результатов TheBornExpert.QuizNum игр ===================================
+
+        print(f'+------------------------------------------+')
+        print(f'<< the result is {(nTrue * 100) / be.QuizNum} >>')
+        print(f'+------------------------------------------+')
+
+        for i in range(0, be.QuizNum):
+            n = be.PersonsMonitor[i]
+            print(f'{i} > {self.Persons[1][n]} is {be.resOfQuizRound[i]}')
+        # персональные результаты =======================================================
+
+    # ===================================================================================
+
+    def bornTester(self, persIndex, i):
+
+        while True:
+            try:
+                print(f'+------------------------------------------+')
+                print(f'|  what is the BornDay of {self.Persons[1][persIndex]} (d(d).m(m).yyyy): ')
+                print(f'| ', end=" ")
+                self.bornDay = input('day > ')
+                be.dayTester(self.bornDay)
+                print(f'| ', end=" ")
+                self.bornMonth = input('month > ')
+                be.monthTester(self.bornMonth)
+                print(f'| ', end=" ")
+                self.bornYear = input('year > ')
+                be.yearTester(self.bornYear)
+                print(f'+------------------------------------------+')
+
+                bornString = str(self.bornDay) + '.' + str(self.bornMonth) + '.' + str(self.bornYear)
+                # bornString - это строка формата d(d).m(m).yyy
+
+                break
+
+            except Exception as ex:
+                print(f'|   {ex} ')
+                print(f'+------------------------------------------+')
+
+        print(f'the Born Day of {self.Persons[1][persIndex]} is {bornString}')
+        theResult = self.bornComparer(bornString, persIndex, i)
+        return (theResult)
+
+    def bornComparer(self, bornString, persIndex, i):
+        #                      bornString - строка формата d(d).m(m).yyyy
+        #                                  persIndex - индекс персонажа
+        #                                             i - номер игры
+
+        persBornString = self.dateBornStringFormator(str(self.Persons[2][persIndex]))
+
+        if bornString == str(self.Persons[2][persIndex]):
+
+            print(f'you are RIGHT!', end=" ")
+            print(f' {self.Persons[1][persIndex]} was born {persBornString}')
+            be.resOfQuizRound[i] = True  # результат текущей игры
+            return True
+        else:
+            print(f'you are WRONG!', end=" ")
+            print(f' {self.Persons[1][persIndex]} was born {persBornString}')
+            return False
+
+    # ===== в строчный формат =======================================
+    def dateBornStringFormator(self, persBornString):
+
+        ddd = persBornString.split('.')
+        dayIndex = int(ddd[0])
+        dayStr = be.Days[dayIndex]
+        monthIndex = int(ddd[1])
+        monthStr = be.Months[monthIndex]
+        yearStr = ddd[2]
+        return (dayStr + ' ' + monthStr + ' ' + yearStr)
+
+
